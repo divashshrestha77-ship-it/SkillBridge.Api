@@ -59,11 +59,21 @@ Controllers/
  HealthCheckController.cs
  JobController.cs
  WeatherForecastController.cs
-Entities/User.cs
+Entities/
+ job.cs
+ JobApplication.cs
+ User.cs
+ UserProfile.cs
 IRepositories/IJobRepository.cs
 Migrations/
  20260508020646_initialcreate.cs
  20260508020646_initialcreate.Designer.cs
+ 20260513020432_JobTableAdded.cs
+ 20260513020432_JobTableAdded.Designer.cs
+ 20260513024034_JobApplicationsTableAdded.cs
+ 20260513024034_JobApplicationsTableAdded.Designer.cs
+ 20260514021808_UserProfileAdded.cs
+ 20260514021808_UserProfileAdded.Designer.cs
  SkillBridgeDbContextModelSnapshot.cs
 Models/JobDto.cs
 obj/Debug/net10.0/

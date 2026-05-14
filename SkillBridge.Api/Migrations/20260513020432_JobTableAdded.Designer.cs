@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SkillBridge.Api.Migrations
 {
     [DbContext(typeof(SkillBridgeDbContext))]
-    partial class SkillBridgeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260513020432_JobTableAdded")]
+    partial class JobTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,47 +112,6 @@ namespace SkillBridge.Api.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SkillBridge.api.Entities.JobApplicaitions", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("ApplicationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("AppliedById")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AppliedjobId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CoverLetter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ResumePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppliedById");
-
-                    b.HasIndex("AppliedjobId");
-
-                    b.ToTable("JobApplocation");
-                });
-
             modelBuilder.Entity("Job", b =>
                 {
                     b.HasOne("SkillBridge.Api.Entities.User", "PostBy")
@@ -159,25 +121,6 @@ namespace SkillBridge.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("PostBy");
-                });
-
-            modelBuilder.Entity("SkillBridge.api.Entities.JobApplicaitions", b =>
-                {
-                    b.HasOne("SkillBridge.Api.Entities.User", "AppliedBy")
-                        .WithMany()
-                        .HasForeignKey("AppliedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Job", "AppliedJob")
-                        .WithMany()
-                        .HasForeignKey("AppliedjobId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppliedBy");
-
-                    b.Navigation("AppliedJob");
                 });
 #pragma warning restore 612, 618
         }
